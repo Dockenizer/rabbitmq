@@ -1,7 +1,8 @@
 FROM dockenizer/alpine
 MAINTAINER Jacques Moati <jacques@moati.net>
 
-ENV RABBITMQ_VERSION=3.6.1
+ENV RABBITMQ_VERSION=3.6.2
+
 
 RUN apk add --update curl tar xz && \
     apk add --update-cache --allow-untrusted \
@@ -15,10 +16,13 @@ RUN apk add --update curl tar xz && \
         erlang-inets \
         erlang-os-mon \
         erlang-xmerl \
-        erlang-eldap
+        erlang-eldap && \
 
-RUN mkdir /rabbitmq && \
-    curl -sSL https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz | tar -Jx -C /rabbitmq/ --strip-components 1
+    mkdir /rabbitmq && \
+    curl -sSL https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz | tar -Jx -C /rabbitmq/ --strip-components 1 && \
+
+    apk del --purge curl tar xz && \
+    rm -rf /var/cache/apk/*
 
 COPY run.sh /rabbitmq/run.sh
 
