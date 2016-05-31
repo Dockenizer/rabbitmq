@@ -3,7 +3,6 @@ MAINTAINER Jacques Moati <jacques@moati.net>
 
 ENV RABBITMQ_VERSION=3.6.2
 
-
 RUN apk add --update curl tar xz && \
     apk add --update-cache --allow-untrusted \
         erlang erlang-mnesia \
