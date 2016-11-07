@@ -28,8 +28,6 @@ COPY run.sh /rabbitmq/run.sh
 RUN mkdir -p /data/rabbitmq && \
     chmod +x /rabbitmq/run.sh
 
-VOLUME ["/data/rabbitmq"]
-
 EXPOSE 5672 15672
 
 CMD /rabbitmq/run.sh
