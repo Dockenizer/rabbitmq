@@ -1,7 +1,7 @@
 FROM dockenizer/alpine
 MAINTAINER Jacques Moati <jacques@moati.net>
 
-ENV RABBITMQ_VERSION=3.6.5
+ENV RABBITMQ_VERSION=3.6.6
 
 RUN apk add --update curl tar xz && \
     apk add --update-cache --allow-untrusted \
